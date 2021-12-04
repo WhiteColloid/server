@@ -13,6 +13,13 @@ app.use('/api/register', require('./routes/register'));
 app.use('/api/login', require('./routes/login'));
 
 app.use('/api/personal', require('./routes/personal'));
+app.use('/api/class', require('./routes/class'));
+
+app.use('/api/survey', require('./routes/survey'));
+
+app.use('/api/createClass', require('./routes/createClass'));
+
+app.use('/api/getTop', require('./routes/getTop'));
 
 app.use((err, req, res, next) => {
     if (err instanceof Joi.ValidationError) {
