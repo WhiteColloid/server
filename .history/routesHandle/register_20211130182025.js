@@ -15,8 +15,8 @@ module.exports = (req, res) => {
 
         const sql = 'INSERT INTO users set ?';
         req.body.password = bcrypt.hashSync(req.body.password, 10);
-        const { username, email, password,isProfessor } = req.body;
-        db(sql, {username, email, password,isProfessor}, result => {
+        const { username, email, password } = req.body;
+        db(sql, {username, email, password}, result => {
             if (result.affectedRows === 1) {
                 return res.send({
                     status: 0,

@@ -4,7 +4,7 @@ const db = require('../db');
 
 module.exports = (req, res) => {
     //Check if username already exists
-    const sql = 'SELECT * FROM users WHERE username=?';
+    const sql = 'SELECT * FROM user WHERE username=?';
     db(sql, req.body.username, result => {
         if(result.length >= 1) {
             return res.send({
@@ -13,10 +13,10 @@ module.exports = (req, res) => {
             });
         }
 
-        const sql = 'INSERT INTO users set ?';
+        const sql = 'INSERT INTO user set ?';
         req.body.password = bcrypt.hashSync(req.body.password, 10);
-        const { username, email, password,isProfessor } = req.body;
-        db(sql, {username, email, password,isProfessor}, result => {
+        const { username, email, password } = req.body;
+        db(sql, {username, email, password}, result => {
             if (result.affectedRows === 1) {
                 return res.send({
                     status: 0,
